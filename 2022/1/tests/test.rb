@@ -5,7 +5,7 @@ require_relative '../solution'
 def test_solution
   file = ParseFile.new('input.txt')
 
-  solution = Solution.new(file.lines)
+  solution = Solution.new(file.elves)
 
   first = solution.find_elf_calories[1]
   top_three = solution.find_top_three_elves_with_most_calories

@@ -2,23 +2,14 @@
 
 # Parse the input file
 class ParseFile
-  attr_reader :lines
+  attr_reader :elves
 
   def initialize(path)
     @lines = []
+    @elves = {}
     File.open(path).each do |line|
       @lines << line
     end
-  end
-end
-
-# Solution
-class Solution
-  attr_reader :first_elf_calories, :top_three_calories
-
-  def initialize(lines)
-    @lines = lines
-    @elves = {}
     parse_elves
   end
 
@@ -32,6 +23,15 @@ class Solution
         @elves[current_elf] += line.to_i
       end
     end
+  end
+end
+
+# Solution
+class Solution
+  attr_reader :first_elf_calories, :top_three_calories
+
+  def initialize(elves)
+    @elves = elves
   end
 
   # Find an elf with the most calories ignoring the ones passed in the block condition
