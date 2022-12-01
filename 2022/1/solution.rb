@@ -14,6 +14,8 @@ end
 
 # Solution
 class Solution
+  attr_reader :first_elf_calories, :top_three_calories
+
   def initialize(lines)
     @lines = lines
     @elves = {}
@@ -24,8 +26,6 @@ class Solution
   def solve
     parse_elves
     find_top_three_elves_with_most_calories
-    p @first_elf_calories
-    p @top_three_calories
   end
 
   private
@@ -55,8 +55,14 @@ class Solution
   end
 end
 
-file = ParseFile.new('input.txt')
+# only run this if the file is run directly
+if $PROGRAM_NAME == __FILE__
+  file = ParseFile.new('input.txt')
 
-solution = Solution.new(file.lines)
+  solution = Solution.new(file.lines)
 
-solution.solve
+  solution.solve
+
+  puts "First elf calories: #{solution.first_elf_calories}"
+  puts "Top three elves calories: #{solution.top_three_calories}"
+end
