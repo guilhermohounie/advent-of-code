@@ -14,17 +14,18 @@ end
 
 # Solution
 class Solution
-  attr_reader :elves
-
   def initialize(lines)
     @lines = lines
     @elves = {}
+    @first_elf_calories = nil
+    @top_three_calories = nil
   end
 
   def solve
     parse_elves
-    puts find_elf_with_most_calories.to_s
-    puts find_top_three_elves_with_most_calories
+    find_top_three_elves_with_most_calories
+    p @first_elf_calories
+    p @top_three_calories
   end
 
   private
@@ -41,24 +42,21 @@ class Solution
     end
   end
 
-  def find_elf_with_most_calories
-    @elves.max_by { |_, calories| calories }
-  end
-
-  def find_calories_after(&block)
-    # find the elf with the most calories that is not in the block
+  def find_elf_calories(&block)
     @elves.reject(&block).max_by { |_, calories| calories }
   end
 
   def find_top_three_elves_with_most_calories
-    first = find_elf_with_most_calories
-    second = find_calories_after { |elf, _| elf == first[0] }
-    third = find_calories_after { |elf, _| elf == first[0] || elf == second[0] }
-    first[1] + second[1] + third[1]
+    first = find_elf_calories {}
+    second = find_elf_calories { |elf, _| elf == first[0] }
+    third = find_elf_calories { |elf, _| elf == first[0] || elf == second[0] }
+    @first_elf_calories = first[1]
+    @top_three_calories = first[1] + second[1] + third[1]
   end
 end
 
 file = ParseFile.new('input.txt')
+
 solution = Solution.new(file.lines)
 
 solution.solve
