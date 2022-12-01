@@ -7,10 +7,11 @@ def test_solution
 
   solution = Solution.new(file.lines)
 
-  solution.solve
+  first = solution.find_elf_calories[1]
+  top_three = solution.find_top_three_elves_with_most_calories
 
-  raise 'Error getting top elf' unless solution.first_elf_calories == 6200
-  raise 'Error getting top 3 elves' unless solution.top_three_calories == 15_200
+  raise 'Error getting top elf' unless first == 6200
+  raise 'Error getting top 3 elves' unless top_three == 15_200
 
   puts 'Test passed!'
 end

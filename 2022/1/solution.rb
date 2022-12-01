@@ -19,16 +19,8 @@ class Solution
   def initialize(lines)
     @lines = lines
     @elves = {}
-    @first_elf_calories = nil
-    @top_three_calories = nil
-  end
-
-  def solve
     parse_elves
-    find_top_three_elves_with_most_calories
   end
-
-  private
 
   def parse_elves
     current_elf = 1
@@ -42,6 +34,7 @@ class Solution
     end
   end
 
+  # Find an elf with the most calories ignoring the ones passed in the block condition
   def find_elf_calories(&block)
     @elves.reject(&block).max_by { |_, calories| calories }
   end
@@ -50,19 +43,6 @@ class Solution
     first = find_elf_calories {}
     second = find_elf_calories { |elf, _| elf == first[0] }
     third = find_elf_calories { |elf, _| elf == first[0] || elf == second[0] }
-    @first_elf_calories = first[1]
-    @top_three_calories = first[1] + second[1] + third[1]
+    first[1] + second[1] + third[1]
   end
-end
-
-# only run this if the file is run directly
-if $PROGRAM_NAME == __FILE__
-  file = ParseFile.new('input.txt')
-
-  solution = Solution.new(file.lines)
-
-  solution.solve
-
-  puts "First elf calories: #{solution.first_elf_calories}"
-  puts "Top three elves calories: #{solution.top_three_calories}"
 end
