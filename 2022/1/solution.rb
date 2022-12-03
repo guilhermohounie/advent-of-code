@@ -6,33 +6,40 @@ class ParseFile
 
   def initialize(path)
     @lines = []
-    @elves = {}
     File.open(path).each do |line|
       @lines << line
     end
-    parse_elves
+    @elves = parse_elves(@lines)
   end
 
-  def parse_elves
+  private
+
+  def parse_elves(lines)
     current_elf = 1
-    @lines.each do |line|
+    elves = {}
+    lines.each do |line|
       current_elf += 1 if line == "\n"
-      if !@elves.key?(current_elf)
-        @elves[current_elf] = line.to_i
+      if !elves.key?(current_elf)
+        elves[current_elf] = line.to_i
       else
-        @elves[current_elf] += line.to_i
+        elves[current_elf] += line.to_i
       end
     end
+    elves
   end
 end
 
 # Solution
 class Solution
-  attr_reader :first_elf_calories, :top_three_calories
+  attr_reader :first_elf, :top_three_elves
 
   def initialize(elves)
     @elves = elves
+    @first_elf = find_elf_calories {}[1]
+    @top_three_elves = find_top_three_elves_with_most_calories
   end
+
+  private
 
   # Find an elf with the most calories ignoring the ones passed in the block condition
   def find_elf_calories(&block)

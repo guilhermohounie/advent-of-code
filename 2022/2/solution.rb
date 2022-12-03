@@ -40,11 +40,9 @@ class Solution
   attr_reader :score, :score_part_two
 
   def initialize(turns)
-    @score = 0
-    @score_part_two = 0
     @turns = turns
-    calculate_score
-    calculate_score_part_two
+    @score = calculate_score(@turns)
+    @score_part_two = calculate_score_part_two(@turns)
   end
 
   private
@@ -96,15 +94,19 @@ class Solution
     turn_score + hand_score
   end
 
-  def calculate_score
-    @turns.each do |turn|
-      @score += turn_result(turn)
+  def calculate_score(turns)
+    score = 0
+    turns.each do |turn|
+      score += turn_result(turn)
     end
+    score
   end
 
-  def calculate_score_part_two
-    @turns.each do |turn|
-      @score_part_two += turn_result_part_two(turn)
+  def calculate_score_part_two(turns)
+    score_part_two = 0
+    turns.each do |turn|
+      score_part_two += turn_result_part_two(turn)
     end
+    score_part_two
   end
 end
