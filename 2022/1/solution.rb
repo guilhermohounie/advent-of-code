@@ -5,10 +5,7 @@ class ParseFile
   attr_reader :elves
 
   def initialize(path)
-    @lines = []
-    File.open(path).each do |line|
-      @lines << line
-    end
+    @lines = File.readlines(path)
     @elves = parse_elves(@lines)
   end
 

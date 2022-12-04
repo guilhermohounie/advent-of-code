@@ -95,18 +95,14 @@ class Solution
   end
 
   def calculate_score(turns)
-    score = 0
-    turns.each do |turn|
-      score += turn_result(turn)
+    turns.reduce(0) do |score, turn|
+      score + turn_result(turn)
     end
-    score
   end
 
   def calculate_score_part_two(turns)
-    score_part_two = 0
-    turns.each do |turn|
-      score_part_two += turn_result_part_two(turn)
+    turns.reduce(0) do |score, turn|
+      score + turn_result_part_two(turn)
     end
-    score_part_two
   end
 end
