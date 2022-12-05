@@ -5,10 +5,10 @@ require_relative '../solution'
 def test_solution
   file = ParseFile.new('../input.txt')
 
-  solution = Solution.new(file.rucksacks)
+  solution = Solution.new(file.sections)
 
-  raise 'Error in score sum' unless solution.sum == 7793
-  raise 'Error in badges sum' unless solution.badges_sum == 2499
+  raise 'Error in count sum' unless solution.subsets == 567
+  raise 'Error in count sum' unless solution.overlaps == 907
 
   puts 'Test passed!'
 end
