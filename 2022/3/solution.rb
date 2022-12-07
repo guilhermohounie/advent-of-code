@@ -4,16 +4,14 @@ require 'set'
 
 ITEMS = [*'a'..'z', *'A'..'Z'].freeze
 
-# Parse the input file
-class ParseFile
+# Parse the rucksacks
+class ParseRucksacks
   attr_reader :rucksacks
 
   def initialize(path)
-    @rucksacks = []
-    File.open(path).each do |line|
+    @rucksacks = File.readlines(path).map do |line|
       first, second = line.gsub(/\n/, '').partition(/.{#{line.length / 2}}/)[1, 2]
-      # Divide each rucksack in two compartments
-      @rucksacks << {
+      {
         first_compartment: first,
         second_compartment: second
       }
@@ -21,15 +19,13 @@ class ParseFile
   end
 end
 
-# Solution
-class Solution
+# Rucksacks
+class Rucksacks
   attr_reader :sum, :badges_sum
 
   def initialize(rucksacks)
-    @rucksacks = rucksacks
-    @rucksacks_groups = @rucksacks.each_slice(3).to_a
-    @sum = solve(@rucksacks)
-    @badges_sum = solve_badges(@rucksacks_groups)
+    @sum = solve(rucksacks)
+    @badges_sum = solve_badges(rucksacks.each_slice(3).to_a)
   end
 
   private

@@ -4,4 +4,4 @@
 
 Language: Ruby
 
-To solve, `cd` into the desired day folder and run `ruby solution.rb`
+To solve, `cd` into the desired day folder and run `ruby test.rb`

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require 'set'
-# Parse the input file
-class ParseFile
+
+# Parse the  sections
+class ParseSections
   attr_reader :sections
 
   def initialize(path)
@@ -16,14 +17,13 @@ class ParseFile
   end
 end
 
-# Solution class
-class Solution
+# Elves sections
+class ElvesSections
   attr_reader :subsets, :overlaps
 
   def initialize(sections)
-    @sections = sections
-    @subsets = sum_of_subsets(@sections)
-    @overlaps = sum_of_overlaps(@sections)
+    @subsets = sum_of_subsets(sections)
+    @overlaps = sum_of_overlaps(sections)
   end
 
   private

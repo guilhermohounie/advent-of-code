@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-# Parse the input file
-class ParseFile
+# Parse the elves
+class ElvesParser
   attr_reader :elves
 
   def initialize(path)
-    @lines = File.readlines(path)
-    @elves = parse_elves(@lines)
+    @elves = parse_elves(File.readlines(path))
   end
 
   private
@@ -16,18 +15,14 @@ class ParseFile
     elves = {}
     lines.each do |line|
       current_elf += 1 if line == "\n"
-      if !elves.key?(current_elf)
-        elves[current_elf] = line.to_i
-      else
-        elves[current_elf] += line.to_i
-      end
+      elves[current_elf] = (elves[current_elf] || 0) + line.to_i
     end
     elves
   end
 end
 
-# Solution
-class Solution
+# Elves calories
+class ElvesCalories
   attr_reader :first_elf, :top_three_elves
 
   def initialize(elves)
@@ -38,7 +33,6 @@ class Solution
 
   private
 
-  # Find an elf with the most calories ignoring the ones passed in the block condition
   def find_elf_calories(&block)
     @elves.reject(&block).max_by { |_, calories| calories }
   end
