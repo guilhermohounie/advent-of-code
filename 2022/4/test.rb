@@ -6,7 +6,7 @@ require 'minitest/autorun'
 # Solve the problem
 class TestSolution < Minitest::Test
   def test_solution
-    sections = ParseSections.new('./input.txt').sections
+    sections = ParseSections.new(File.join(__dir__, 'input.txt')).sections
 
     solution = ElvesSections.new(sections)
 

@@ -6,7 +6,7 @@ require 'minitest/autorun'
 # Solve the problem
 class TestSolution < Minitest::Test
   def test_solution
-    elves = ElvesParser.new('./input.txt').elves
+    elves = ElvesParser.new(File.join(__dir__, 'input.txt')).elves
 
     solution = ElvesCalories.new(elves)
 

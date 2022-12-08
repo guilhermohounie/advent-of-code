@@ -6,7 +6,7 @@ require 'minitest/autorun'
 # Solve the problem
 class TestSolution < Minitest::Test
   def test_solution
-    rucksacks = ParseRucksacks.new('./input.txt').rucksacks
+    rucksacks = ParseRucksacks.new(File.join(__dir__, 'input.txt')).rucksacks
 
     solution = Rucksacks.new(rucksacks)
 

@@ -6,9 +6,10 @@ require 'minitest/autorun'
 # Solve the problem
 class TestSolution < Minitest::Test
   def test_solution
-    stack_one = ParseStacks.new('./input.txt').stacks
-    stack_two = ParseStacks.new('./input.txt').stacks
-    procedures = ParseProcedures.new('./input.txt').procedures
+    input = File.join(__dir__, 'input.txt')
+    stack_one = ParseStacks.new(input).stacks
+    stack_two = ParseStacks.new(input).stacks
+    procedures = ParseProcedures.new(input).procedures
 
     solution = Crates.new(stack_one, stack_two, procedures)
 

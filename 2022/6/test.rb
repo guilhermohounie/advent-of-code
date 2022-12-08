@@ -6,7 +6,7 @@ require 'minitest/autorun'
 # Solve the problem
 class TestSolution < Minitest::Test
   def test_solution
-    datastream_buffer = ParseDatastreamBuffer.new('./input.txt').datastream_buffer
+    datastream_buffer = ParseDatastreamBuffer.new(File.join(__dir__, 'input.txt')).datastream_buffer
 
     solution = Subroutine.new(datastream_buffer)
 

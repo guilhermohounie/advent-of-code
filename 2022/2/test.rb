@@ -6,7 +6,7 @@ require 'minitest/autorun'
 # Solve the problem
 class TestSolution < Minitest::Test
   def test_solution
-    turns = ParseTurns.new('./input.txt').turns
+    turns = ParseTurns.new(File.join(__dir__, 'input.txt')).turns
 
     solution = CalculateTurnsScores.new(turns)
 

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+folders = Dir.glob('[0-9]*')
+
+folders.each do |folder|
+  puts "Running test for day #{folder}"
+  system("ruby #{folder}/test.rb")
+  puts "\n"
+end
